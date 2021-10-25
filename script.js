@@ -81,14 +81,12 @@ function fillSquare(symbol, target) {
 }
 
 function checkForWin(symbol) {
-  console.log(state);
   let symbolIndexArray = [];
   for (i = 0; i < state.board.length; i++) {
     if (state.board[i].value === symbol) {
       symbolIndexArray.push(i);
     }
   }
-  console.log(symbolIndexArray);
   return winningCombinations.some((arr) => arr.every((val) => symbolIndexArray.includes(val)));
 }
 
@@ -102,7 +100,6 @@ function checkDraw() {
 }
 
 function winningMessage(draw) {
-  console.log(draw);
   if (draw) {
     playerTurnElem.innerHTML = 'Draw!';
   } else {
@@ -155,11 +152,8 @@ const render = () => {
 boardElem.addEventListener('click', function ({ target }) {
   if (state.hasStarted && !state.gameOver) {
     if (target.className === 'cell') {
-      // console.log(event.target);
       let cellIdx = target.dataset.index;
-      // console.log(cellIdx);
       state.board[cellIdx];
-      // state.board[cellIdx].value = '';
       makeChoice(cellIdx);
       render();
     }
